@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+
+{% block title %} Quote {% endblock %} 
+
+{% block content %}
+
+<style>
+  .quote-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .btn {
+    background-color: #007BFF; /* Mavi arka plan rengi */
+    color: #FFFFFF; /* Beyaz yazı rengi */
+    transition: background-color 0.3s ease; /* Hover efekti için geçiş süresi ayarı */
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+    color: #FFFFFF 
+  }
+</style>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form action="{{ url_for('quote') }}" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          <div class="quote-header">
+            <h2>Request a Quote!</h2>
+          </div>
+
+          <div class="mb-3">
+            {{ form.full_name.label(class="form-label") }} 
+            {{ form.full_name(class="form-control") }} 
+            {% if form.full_name.errors %}
+              <div class="invalid-feedback">
+                {{ form.full_name.errors[0] }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            {{ form.email.label(class="form-label") }} 
+            {{ form.email(class="form-control") }} 
+            {% if form.email.errors %}
+              <div class="invalid-feedback">
+                {{ form.email.errors[0] }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            {{ form.quote.label(class="form-label") }} 
+            {{ form.quote(class="form-control") }} 
+            {% if form.quote.errors %}
+              <div class="invalid-feedback">
+                {{ form.quote.errors[0] }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3">
+            {{ form.service.label(class="form-label") }} 
+            {{ form.service(class="form-control") }} 
+            {% if form.service.errors %}
+              <div class="invalid-feedback">
+                {{ form.service.errors[0] }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="mb-3 text-center">
+            {{ form.submit(class="btn btn-primary btn-lg") }}
+          </div>
+          
+          <div class="mb-3 text-center">
+            <a href="{{ url_for('myquote') }}">
+              <button type="button" class="btn">My Quotes</button>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container">
+
+        {% if my_quotes %}
+            <div class="appointments-section">
+                <h2 class="appointments-title">Your Appointments</h2>
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Quote</th>
+                            <th>Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for quote in my_quotes %}
+                            <tr>
+                                <td>{{ quote.name }}</td>
+                                <td>{{ quote.email }}</td>
+                                <td>{{ quote.quote }}</td>
+                                <td>{{ quote.service }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="no-appointments-message">No quotes available.</p>
+        {% endif %}
+
+        <!-- Diğer içerikler veya bağlantılar buraya eklenebilir -->
+    </div>
+
+    <div class="mb-3 text-center">
+        <a href="{{ url_for('quote') }}">
+          <button type="button" class="btn">Go Back</button>
+        </a>
+      </div>
+
+    <style>
+        .btn {
+            background-color: #007BFF; /* Mavi arka plan rengi */
+            color: #FFFFFF; /* Beyaz yazı rengi */
+            transition: background-color 0.3s ease; /* Hover efekti için geçiş süresi ayarı */
+          }
+        
+          .btn:hover {
+            background-color: #0056b3;
+            color: #FFFFFF 
+          }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .appointments-section {
+            margin-top: 20px;
+        }
+        
+        .appointments-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .appointments-table th, .appointments-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .appointments-table th {
+            background-color: #a1a1a1;
+        }
+        
+        .no-appointments-message {
+            color: #888;
+        }
+        
+    </style>
+{% endblock %}
