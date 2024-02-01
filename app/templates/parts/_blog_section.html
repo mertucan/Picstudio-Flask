@@ -1,0 +1,56 @@
+<!-- blog section -->
+
+<section class="blog_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                Latest Blog
+              </h2>
+              <p>
+                In the ever-evolving landscape of technology and design, staying informed is key. Our latest blog entries are crafted to provide
+                you with valuable insights, industry trends, and practical tips to help you navigate the digital world.
+
+                Dive into our blog to discover thought-provoking articles written by our expert team. From web development best practices to
+                design inspiration, we cover a wide range of topics to keep you engaged and informed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="blog_container">
+      <div class="blog_bg">
+        <img src="{{ url_for('static', filename='images/gallery-bg.png') }}" alt="" />
+      </div>
+      <div class="container">
+        <div class="blog_box">
+          <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6">
+                    <div class="box b2">
+                        <div class="img-box">
+                            <img src="{{ url_for('static', filename=post.image_path) }}" alt="" />
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog_title">
+                                <h5>{{ post.heading }}</h5>
+                                <div class="blog_post">
+                                    <h6>Post By: {{ post.posted }}</h6>
+                                </div>
+                            </div>
+                            <p>{{ post.post }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+          <div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end blog section -->
